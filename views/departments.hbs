@@ -1,8 +1,9 @@
 <div class="row">
- <div class="col-md-12">
- <h2>Departments</h2>
- <hr>
- {{#if departments}}
+    <div class="col-md-12">
+        <h2>Departments</h2>
+        <a href="/departments/add" class="btn btn-success pull-right">Add Department</a>
+        <hr />
+
         <div class="table-responsive">
             <table class="table ">
                 <thead>
@@ -12,16 +13,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                     {{#each departments}}
+                    
+                    {{#each departments}}
                     <tr>
                         <td><a href="/employees?department={{departmentId}}">{{departmentId}}</a></td>
                         <td><a href="/employees?department={{departmentId}}">{{departmentName}}</a></td>
+                        <td> <a class="btn btn-danger" id="remove" value="click"  href="/department/delete/{{id}}">remove</a> </td>
                     </tr>
                     {{/each}}
                 </tbody>
             </table>
- {{else}}
- {{/if}}
+            
+            
 
- </div>
-</div>
+        </div>

@@ -1,10 +1,10 @@
 /*********************************************************************************
-* WEB322 – Assignment 04
+* WEB322 – Assignment 05
 * I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part
 * of this assignment has been copied manually or electronically from any other source
 * (including 3rd party web sites) or distributed to other students. *
 * Name: Mohammed Mahi Shaikh Student ID:  147891212Date: Nov 10, 2020 *
-* Online (Heroku) Link:  https://fathomless-dusk-20202.herokuapp.com/ | https://git.heroku.com/fathomless-dusk-20202.git
+* Online (Heroku) Link:  https://git.heroku.com/fathomless-dusk-20202.git
 Github:https://github.com/mshaikh51/web322-app
 * ********************************************************************************/
 var path = require("path");
@@ -105,7 +105,7 @@ app.get("/employees", function (req, res) {
 app.get("/employee/:value", function (req, res) {
     data.getEmployeeByNum(req.params.value).then((data) => {
     //    console.log(data);
-        res.render("employee", {employee:data[0] });
+        res.render("employee", {employee:data});
     }).catch((err) => {
         res.render("employee", { message: "no results" });
     })
@@ -123,8 +123,22 @@ app.get("/departments", function (req, res) {
         res.render({ message: "no results" });
     });
 });
+app.get('/departments/add', function (req, res) {
+    res.render("addDepartments");
+});
+app.post('/departments/add', function (req, res) {
+    data.addDepartment(req.body).then(() => { 
+        res.redirect("/departments") }).catch(function (data) {
+        res.render("departments",{message:data})
+    })
+});
+
 app.get('/employees/add', (req, res) => {
-    res.render("addEmployee");
+    data.getDepartments().then(function (data){
+        res.render("addEmployee",{departments:data});
+    }).catch(function () {
+        res.render("addEmployee",{departments:[]});
+    })
 });
 
 app.get('/images/add', (req, res) => {
