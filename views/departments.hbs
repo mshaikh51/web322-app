@@ -1,29 +1,41 @@
 <div class="row">
     <div class="col-md-12">
-        <h2>Departments</h2>
-        <a href="/departments/add" class="btn btn-success pull-right">Add Department</a>
-        <hr />
-
+        <h2> Employees 
+            <a href="/departments/add" class="btn btn-success pull-right"> Add New Department </a>
+        </h2>
+        <hr>
+        {{!-- 
+        {{#each departments}}
+            {{departmentId}} {{departmentName}} <br>
+        {{else}}
+            No Departments Available.
+        {{/each}}
+        --}}
         <div class="table-responsive">
-            <table class="table ">
+            <table class="table">
                 <thead>
                     <tr>
-                        <th>Department Number</th>
-                        <th>Department Name</th>
+                        <th> Department Number </th>
+                        <th> Department Name </th>
                     </tr>
                 </thead>
                 <tbody>
-                    
                     {{#each departments}}
-                    <tr>
-                        <td><a href="/employees?department={{departmentId}}">{{departmentId}}</a></td>
-                        <td><a href="/employees?department={{departmentId}}">{{departmentName}}</a></td>
-                        <td> <a class="btn btn-danger" id="remove" value="click"  href="/department/delete/{{id}}">remove</a> </td>
-                    </tr>
+                        <tr>
+                            {{!-- 
+                            <td> <a href="/employees?department={{departmentId}}">  {{departmentId}} </a> </td>
+                            <td> <a href ="/employees?department={{departmentId}}"> {{departmentName}} </a> </td>
+                            --}}
+                            <td> <a href="/department/{{departmentId}}"> {{departmentId}} </a> </td>
+                            <td> <a href="/department/{{departmentId}}"> {{departmentName}} </a> </td>
+                        </tr>
+                    {{else}}
+                        <div class="col-md-12 text-center">
+                            <strong> {{message}} </strong>
+                        </div>
                     {{/each}}
                 </tbody>
             </table>
-            
-            
-
         </div>
+    </div>
+</div>

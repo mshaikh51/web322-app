@@ -1,0 +1,18 @@
+{{#if successMessage}}
+<div class="alert alert-success"> 
+<strong>Success:</strong> {{successMessage}}</div><a class="btn btn-success pull-right" 
+href="/login">&nbsp;&nbsp;&nbsp;Proceed to Log in &nbsp;&nbsp;&nbsp;</a><br /><br /><br />
+{{else}}
+{{#if errorMessage}}
+<div class="alert 
+alert-danger"> <strong>Error:</strong> {{errorMessage}}</div> 
+{{/if}}
+<h2>Register</h2>
+<form action="/register" method="post">
+<input type="text" name="userName" placeholder="User Name" id="userName" required><br>
+<input type="password" name="password" placeholder="Password" id="password" required><br>
+<input type="password" name="password2" placeholder="Confirm Password" id="password2" required><br>
+<input type="email" name="email" id="email" placeholder="EmailAddress"><br>
+<button type="submit" value="Register">Register</button>
+</form>
+{{/if}}
